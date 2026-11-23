@@ -1,0 +1,70 @@
+[package]
+name = "vdoc"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish = false
+default-run = "vdoc"
+description = "VDoc desktop app"
+
+[lints]
+workspace = true
+
+[dependencies]
+vdoc-doc = { workspace = true }
+vdoc-engine = { workspace = true }
+vdoc-proof = { workspace = true }
+# Fonts the user added (#582) load from the settings folder at start-up.
+vdoc-fonts = { workspace = true }
+vdoc-ui-egui = { workspace = true }
+# The clipboard's PNG decoder.
+vdoc-geom = { workspace = true, features = ["image"] }
+# The control key file's location (shared with the MCP bridge).
+vdoc-control-key = { workspace = true }
+eframe = { workspace = true, features = ["default_fonts", "wgpu", "accesskit", "clipboard", "wayland", "x11", "links"] }
+egui = { workspace = true }
+serde_json = { workspace = true }
+log = { workspace = true }
+# The suite's shared libraries: the runtime hooks (`ui`, `ui-app`), file dialogs, the control
+# channel's arguments, the GPU choice, printing, settings and window placement, the OS appearance
+# reader and the system clipboard.
+craft = { workspace = true, features = [
+    "ui",
+    "ui-app",
+    "dialogs",
+    "automation",
+    "gpu-startup",
+    "print",
+    "settings",
+    "window",
+    "platform-appearance",
+    "platform-clipboard-system",
+] }
+
+[dev-dependencies]
+# Temporary settings folders for the `prefs` tests.
+tempfile = "3"
+# The frame driver of the `smoke` test.
+craft = { workspace = true, features = ["ui-testing"] }
+
+[build-dependencies]
+# Icon + VERSIONINFO for vdoc.exe; build.rs only uses it when the target is Windows.
+winresource = "0.1"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+# Finder double-click, Open With, Dock drops and `open -a VDoc letter.docx` arrive as a
+# kAEOpenDocuments Apple event, which winit doesn't handle (#27).
+craft = { workspace = true, features = ["platform-apple-events"] }
+
+[target.'cfg(all(unix, not(target_os = "macos")))'.dependencies]
+winit = { version = "0.30", default-features = false, features = ["x11"] }
+# Check that the libraries winit's X11 backend opens are installed before choosing XWayland (see
+# `x11_libraries` in main.rs). Both are already in the build through winit's `x11` feature, at
+# these versions and with this feature.
+x11-dl = "2.21"
+xkbcommon-dl = { version = "0.4.2", features = ["x11"] }
+
+[target.'cfg(windows)'.dependencies]
+# The update helper: a copy of this program started with `--finish-update`
+# (`craft::update::self_update::finish`).
+craft = { workspace = true, features = ["update"] }

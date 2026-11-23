@@ -1,0 +1,27 @@
+[package]
+name = "vdoc-docx"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+description = "VDoc DOCX (OOXML WordprocessingML) reader and writer"
+
+[lints]
+workspace = true
+
+[dependencies]
+craft-docx = { workspace = true }
+craft-wordmodel = { workspace = true }
+vdoc-doc = { workspace = true }
+craft-xml = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+[dev-dependencies]
+vdoc-doc = { workspace = true, features = ["test-support"] }
+vdoc-geom = { workspace = true, features = ["image"] }
+base64 = { workspace = true }
+cfb = { workspace = true }
+log = { workspace = true }
+proptest = { workspace = true }
+image = { workspace = true }
+craft-zip = { workspace = true }

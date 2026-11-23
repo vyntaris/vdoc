@@ -78,7 +78,7 @@ wuff = "0.2.9"
 # WOFF2's brotli stream, decoded ahead of wuff so its glyph point counts are checked first (#3703).
 # The same crate and version wuff already decodes it with (no new code in the build): pure Rust,
 # `forbid(unsafe_code)` in its default build, no_std-capable (builds for wasm), BSD-3-Clause/MIT.
-brotli-decompressor = "5"
+brotli-decompressor = "6"
 vello_cpu = "0.2"
 image = { version = "0.25", default-features = false }
 craft-image-codecs = { git = "https://github.com/storytold/craft-libs", rev = "750a9bdd575b494055d7fb65b91f978b8eff651a", version = "=0.1.0" }

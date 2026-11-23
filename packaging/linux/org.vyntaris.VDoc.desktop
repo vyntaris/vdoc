@@ -15,4 +15,4 @@ StartupNotify=true
 StartupWMClass=org.vyntaris.VDoc
 Categories=Office;WordProcessor;
 Keywords=word;processor;document;docx;odt;writer;text;letter;report;vdoc;tekst;dokument;
-MimeType=application/vnd.openxmlformats-officedocument.wordprocessingml.document;application/vnd.openxmlformats-officedocument.wordprocessingml.template;application/msword;application/vnd.oasis.opendocument.text;application/rtf;text/markdown;text/x-tex;text/html;text/plain;
+MimeType=application/vnd.openxmlformats-officedocument.wordprocessingml.document;application/vnd.ms-word.document.macroEnabled.12;application/vnd.openxmlformats-officedocument.wordprocessingml.template;application/vnd.ms-word.template.macroEnabled.12;application/msword;application/msword-template;application/vnd.oasis.opendocument.text;application/rtf;text/rtf;text/markdown;text/x-tex;text/html;

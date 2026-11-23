@@ -1,16 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["crates/*", "apps/*", "xtask"]
-default-members = ["crates/*", "apps/vdoc", "apps/vdoc-cli", "xtask"]
-
-[workspace.metadata.cl]
-# Port build loop (craft-ui-port-kit): every member but xtask, so the baseline covers the
-# non-UI crates whose framework dependencies the next pin moves too.
-selection = ["vdoc", "vdoc-ui-egui", "vdoc-web", "vdoc-cli", "vdoc-control-key", "vdoc-doc", "vdoc-docbin", "vdoc-docx", "vdoc-engine", "vdoc-fonts", "vdoc-formats", "vdoc-geom", "vdoc-layout", "vdoc-mcp", "vdoc-pdf", "vdoc-render", "vdoc-zotero"]
-tracked = ["egui", "eframe", "vdoc-ui-egui"]
-unset_env = ["CARGO_INCREMENTAL", "VDOC_REQUIRE_WINRES", "CRAFT_FONTS_REQUIRED", "CRAFT_I18N_REQUIRED", "CRAFT_PROOF_EMBED"]
-run_slots = 3
-test_threads = 4
+members = ["crates/*", "apps/*"]
 
 [workspace.package]
 version = "0.18.1"
@@ -42,7 +32,6 @@ craft-font-store = { git = "https://github.com/storytold/craft-libs", rev = "750
 craft-font-catalog = { git = "https://github.com/storytold/craft-libs", rev = "750a9bdd575b494055d7fb65b91f978b8eff651a", version = "=0.1.0" }
 craft-ssip = { git = "https://github.com/storytold/craft-libs", rev = "750a9bdd575b494055d7fb65b91f978b8eff651a", version = "=0.1.0" }
 vdoc-engine = { path = "crates/engine" }
-vdoc-mcp = { path = "crates/mcp" }
 vdoc-zotero = { path = "crates/zotero" }
 vdoc-control-key = { path = "crates/control-key" }
 vdoc-ui-egui = { path = "crates/ui-egui" }

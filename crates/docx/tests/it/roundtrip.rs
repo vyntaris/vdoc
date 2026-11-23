@@ -1491,7 +1491,7 @@ fn rotated_drawing_canvas_round_trips() {
     let mut zip = craft_zip::Archive::open(&bytes, craft_zip::Limits { max_entries: 10_000, max_total_bytes: 64 << 20 }).unwrap();
     let xml = String::from_utf8(zip.read("word/document.xml", 16 << 20).unwrap().unwrap()).unwrap();
     assert!(
-        xml.contains(r#"<wpc:extLst><a:ext uri="urn:vdoc:canvas-xfrm"><a:xfrm rot="1800000" flipH="1"/></a:ext></wpc:extLst></wpc:wpc>"#),
+        xml.contains(r#"<wpc:extLst><a:ext uri="urn:wordcraft:canvas-xfrm"><a:xfrm rot="1800000" flipH="1"/></a:ext></wpc:extLst></wpc:wpc>"#),
         "{xml}"
     );
     assert_eq!(xml.matches("<wpc:extLst>").count(), 1, "{xml}");

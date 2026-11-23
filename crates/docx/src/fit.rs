@@ -7,14 +7,14 @@
 use craft_docx::DocxError;
 use vdoc_doc::FitState;
 
-/// The part this crate writes and reads back.
-pub(crate) const PART: &str = "customxml/vdocfit.xml";
+/// The part this crate writes and reads back. Its names are WordCraft's, so files from either open in both.
+pub(crate) const PART: &str = "customxml/wordcraftfit.xml";
 /// Root element of the store.
-pub(crate) const ROOT: &str = "vdocFit";
+pub(crate) const ROOT: &str = "wordcraftFit";
 /// Namespace of the store.
-pub(crate) const NS: &str = "urn:vdoc:fit";
+pub(crate) const NS: &str = "urn:wordcraft:fit";
 /// Marker attribute the parser keeps (namespace declarations are stripped from `El`).
-pub(crate) const KIND: &str = "vdoc-fit-v1";
+pub(crate) const KIND: &str = "wordcraft-fit-v1";
 
 /// Serialize `fit` as the custom XML store.
 pub(crate) fn write(fit: &FitState) -> Result<Vec<u8>, DocxError> {

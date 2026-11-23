@@ -1714,14 +1714,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "craft-mcp-server"
-version = "0.1.0"
-source = "git+https://github.com/storytold/craft-libs?rev=750a9bdd575b494055d7fb65b91f978b8eff651a#750a9bdd575b494055d7fb65b91f978b8eff651a"
-dependencies = [
- "serde_json",
-]
-
-[[package]]
 name = "craft-menu"
 version = "0.1.0"
 source = "git+https://github.com/storytold/craft-libs?rev=750a9bdd575b494055d7fb65b91f978b8eff651a#750a9bdd575b494055d7fb65b91f978b8eff651a"
@@ -8033,23 +8025,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "vdoc-cli"
-version = "0.18.1"
-dependencies = [
- "craft-zip",
- "image",
- "serde_json",
- "sys-locale",
- "vdoc-doc",
- "vdoc-engine",
- "vdoc-fonts",
- "vdoc-geom",
- "vdoc-mcp",
- "vdoc-render",
- "vdoc-zotero",
-]
-
-[[package]]
 name = "vdoc-control-key"
 version = "0.18.1"
 
@@ -8214,20 +8189,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "vdoc-mcp"
-version = "0.18.1"
-dependencies = [
- "craft",
- "craft-mcp-server",
- "log",
- "serde_json",
- "vdoc-control-key",
- "vdoc-doc",
- "vdoc-engine",
- "vdoc-render",
-]
-
-[[package]]
 name = "vdoc-pdf"
 version = "0.18.1"
 dependencies = [
@@ -8293,26 +8254,6 @@ dependencies = [
  "vdoc-zotero",
  "web-time",
  "zbus",
-]
-
-[[package]]
-name = "vdoc-web"
-version = "0.18.1"
-dependencies = [
- "craft",
- "eframe",
- "egui",
- "js-sys",
- "log",
- "serde_json",
- "vdoc-doc",
- "vdoc-engine",
- "vdoc-fonts",
- "vdoc-ui-egui",
- "wasm-bindgen",
- "wasm-bindgen-futures",
- "web-sys",
- "web-time",
 ]
 
 [[package]]
@@ -9468,13 +9409,6 @@ name = "xmp-writer"
 version = "0.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9440ea3e5aeabb0ac63af70daf835274065238cdd0cec83418f417eae38bacee"
-
-[[package]]
-name = "xtask"
-version = "0.18.1"
-dependencies = [
- "serde_json",
-]
 
 [[package]]
 name = "yeslogic-fontconfig-sys"

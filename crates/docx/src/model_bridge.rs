@@ -382,6 +382,8 @@ fn missing_pictures_to_shared(source: &vdoc_doc::MissingPictures) -> Result<craf
 
 /// Converts a VDoc document to the shared model for serialization.
 pub fn to_shared_model(source: &vdoc_doc::Document) -> Result<craft_wordmodel::Document, DocxError> {
+    // Saved files name VDoc in docProps/app.xml (the shared writer says "WordCraft" until told).
+    craft_docx::set_application_name("VDoc");
     let mut document = craft_wordmodel::Document::new();
     document.body = blocks_to_shared(&source.body)?;
     document.last_section = convert_ref(&source.last_section)?;
@@ -405,8 +407,8 @@ pub fn to_shared_model(source: &vdoc_doc::Document) -> Result<craft_wordmodel::D
     if let Some(fit) = &source.fit_state {
         let xml = crate::fit::write(fit)?;
         document.passthrough.insert(crate::fit::PART.into(), Arc::new(xml));
-        const CUSTOM_XML_ROOTS: &str = "vdoc:customXml.roots";
-        const EMBEDDED_PARTS: &str = "vdoc:embedded.parts";
+        const CUSTOM_XML_ROOTS: &str = "wordcraft:customXml.roots";
+        const EMBEDDED_PARTS: &str = "wordcraft:embedded.parts";
 
         let manifest_entry = format!("P\t{}\tapplication/xml\n", crate::fit::PART);
         let manifest = match document.passthrough.get_mut(EMBEDDED_PARTS) {

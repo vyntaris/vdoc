@@ -1,12 +1,12 @@
 //! File › Options › General › Make VDoc the default for Word documents (#295).
 //!
 //! The installers register VDoc for Word, RTF and ODT files without taking over the
-//! defaults (`packaging/windows/vdoc.wxs`, the `.desktop` file's `MimeType=`, `Info.plist`).
+//! defaults (the `.desktop` file's `MimeType=`, `Info.plist`).
 //! This is the button that makes it the default when the user asks; the work is
 //! `craft::platform::default_app::make_default`, which this file gives VDoc's identity:
 //! - **Windows** doesn't let apps set defaults: it opens Settings › Default apps on VDoc's
 //!   registered page, where the user picks VDoc per type.
-//! - **Linux and BSD**: `xdg-mime default ai.storyteller.vdoc.desktop <types>` for
+//! - **Linux and BSD**: `xdg-mime default org.vyntaris.VDoc.desktop <types>` for
 //!   [`WORD_MIME_TYPES`], which writes the user's `mimeapps.list`. Only when the desktop entry is
 //!   installed (deb, rpm, Flatpak; a bare AppImage has none), and not from inside the Flatpak
 //!   sandbox, which can't change the host's defaults.
@@ -19,7 +19,7 @@ use craft::platform::default_app::AppIdentity;
 
 /// The desktop entry the Linux packages install, and the Flatpak's app id.
 #[cfg(any(unix, windows, test))]
-const DESKTOP_ID: &str = "ai.storyteller.vdoc.desktop";
+const DESKTOP_ID: &str = "org.vyntaris.VDoc.desktop";
 
 /// The types the button makes VDoc the default for on Linux and BSD: Word documents and
 /// templates (also macro-enabled and legacy), RTF and ODT. The same set the Windows installer
@@ -57,7 +57,7 @@ mod tests {
     /// Every type the button claims is one the desktop entry declares, or desktops ignore it.
     #[test]
     fn the_desktop_entry_declares_every_claimed_type() {
-        let entry = include_str!("../../../packaging/linux/ai.storyteller.vdoc.desktop");
+        let entry = include_str!("../../../packaging/linux/org.vyntaris.VDoc.desktop");
         let declared: Vec<&str> =
             entry.lines().find_map(|l| l.strip_prefix("MimeType=")).map(|v| v.split(';').filter(|s| !s.is_empty()).collect()).unwrap_or_default();
         for t in WORD_MIME_TYPES {
@@ -69,7 +69,7 @@ mod tests {
     /// Declaring `text/plain` makes VDoc a handler for every config, script and log on systems with no default set.
     #[test]
     fn the_desktop_entry_does_not_declare_plain_text() {
-        let entry = include_str!("../../../packaging/linux/ai.storyteller.vdoc.desktop");
+        let entry = include_str!("../../../packaging/linux/org.vyntaris.VDoc.desktop");
         let declared: Vec<&str> =
             entry.lines().find_map(|l| l.strip_prefix("MimeType=")).map(|v| v.split(';').filter(|s| !s.is_empty()).collect()).unwrap_or_default();
         assert!(!declared.is_empty(), "MimeType= line not found");
